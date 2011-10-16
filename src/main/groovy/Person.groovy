@@ -14,4 +14,8 @@ class Person {
   boolean knows(Person person) {
     (this == person) || (friends.contains (person))
   }
+
+  boolean isLinkedTo(Person person) {
+    knows person
+  }
 }
