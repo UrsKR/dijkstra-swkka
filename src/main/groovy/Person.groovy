@@ -20,6 +20,12 @@ class Person {
       return false
     }
     checkedPersons << this
-    knows(person) || friends[0].isLinkedTo(person, checkedPersons) || friends[1].isLinkedTo(person, checkedPersons)
+    knows(person) || hasAFriendWhoIsLinkedTo(person, checkedPersons)
+  }
+
+  private def hasAFriendWhoIsLinkedTo(Person person, checkedPersons) {
+    friends.any {Person friend ->
+      friend.isLinkedTo(person, checkedPersons)
+    }
   }
 }
