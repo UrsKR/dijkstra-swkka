@@ -194,6 +194,14 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="Urs">
+      <words>
+        <w>beate</w>
+        <w>carsten</w>
+      </words>
+    </dictionary>
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Connections-Groovy.iml" filepath="$PROJECT_DIR$/Connections-Groovy.iml" />
