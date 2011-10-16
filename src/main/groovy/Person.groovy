@@ -20,7 +20,7 @@ class Person {
     knows(person) || friends[0].isLinkedTo(person, handledpersons)
   }
 
-  boolean isLinkedTo(Person person, handledPersons) {
+  private boolean isLinkedTo(Person person, handledPersons) {
     if (handledPersons.contains(this)) {
       return false
     }
