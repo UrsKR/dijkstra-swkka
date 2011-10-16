@@ -1,7 +1,7 @@
 class Person {
 
   private final def name
-  private final def friends = []
+  private final List<Person> friends = []
 
   Person(name) {
     this.name = name
@@ -16,15 +16,15 @@ class Person {
   }
 
   boolean isLinkedTo(Person person) {
-    def handledpersons = [this]
-    knows(person) || friends[0].isLinkedTo(person, handledpersons)
+    def checkedPersons = [this]
+    knows(person) || friends[0].isLinkedTo(person, checkedPersons)
   }
 
-  private boolean isLinkedTo(Person person, handledPersons) {
-    if (handledPersons.contains(this)) {
+  private boolean isLinkedTo(Person person, checkedPersons) {
+    if (checkedPersons.contains(this)) {
       return false
     }
-    handledPersons << this
-    knows(person) || friends[0].isLinkedTo(person, handledPersons) || friends[1].isLinkedTo(person, handledPersons)
+    checkedPersons << this
+    knows(person) || friends[0].isLinkedTo(person, checkedPersons) || friends[1].isLinkedTo(person, checkedPersons)
   }
 }
