@@ -33,11 +33,11 @@ public class PersonSpec extends Specification {
       alex.isLinkedTo bettina
   }
 
-  /*def "people you know link you to other people"(){
+  def "people you know link you to other people"(){
     when:
       alex.befriend bettina
       bettina.befriend carsten
     then:
       alex.isLinkedTo carsten
-  }  */
+  }
 }

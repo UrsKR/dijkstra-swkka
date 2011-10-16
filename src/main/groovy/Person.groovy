@@ -16,6 +16,6 @@ class Person {
   }
 
   boolean isLinkedTo(Person person) {
-    knows person
+    (knows (person)) || friends[0].knows(person)
   }
 }
