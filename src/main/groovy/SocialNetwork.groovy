@@ -3,7 +3,7 @@ class SocialNetwork {
   def people = []
 
   void connectTo(Person person) {
-    if (people.contains(person)){
+    if (people.contains(person)) {
       return
     }
     people << person
