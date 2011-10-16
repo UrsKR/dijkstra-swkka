@@ -50,4 +50,14 @@ public class PersonSpec extends Specification {
     then:
       alex.isLinkedTo doris
   }
+
+  def "circular links don't crash the evaluation"(){
+    when:
+      alex.befriend bettina
+      bettina.befriend alex
+      bettina.befriend carsten
+      carsten.befriend doris
+    then:
+      alex.isLinkedTo doris
+  }
 }

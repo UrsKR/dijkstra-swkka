@@ -16,6 +16,15 @@ class Person {
   }
 
   boolean isLinkedTo(Person person) {
-    knows(person) || friends[0].isLinkedTo(person)
+    def handledpersons = [this]
+    knows(person) || friends[0].isLinkedTo(person, handledpersons)
+  }
+
+  boolean isLinkedTo(Person person, handledPersons) {
+    if (handledPersons.contains(this)) {
+      return false
+    }
+    handledPersons << this
+    knows(person) || friends[0].isLinkedTo(person, handledPersons) || friends[1].isLinkedTo(person, handledPersons)
   }
 }
