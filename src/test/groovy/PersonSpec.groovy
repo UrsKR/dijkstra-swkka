@@ -2,10 +2,10 @@ import spock.lang.Specification
 
 public class PersonSpec extends Specification {
 
-  def alex = new Person(name: "Alex")
-  def bettina = new Person(name: "Bettina")
-  def carsten = new Person(name: "Carsten")
-  def doris = new Person(name: "Doris")
+  def alex = new Person()
+  def bettina = new Person()
+  def carsten = new Person()
+  def doris = new Person()
 
   def "everyone knows himself"() {
     expect:

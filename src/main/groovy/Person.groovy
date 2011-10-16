@@ -1,11 +1,6 @@
 class Person {
 
-  private final def name
   private final List<Person> friends = []
-
-  Person(name) {
-    this.name = name
-  }
 
   void befriend(Person person) {
     friends << person
