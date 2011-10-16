@@ -11,8 +11,8 @@ class Person {
   }
 
   boolean isLinkedTo(Person person) {
-    def checkedPersons = [this]
-    knows(person) || friends[0].isLinkedTo(person, checkedPersons)
+    def checkedPersons = []
+    knows(person) || isLinkedTo(person, checkedPersons)
   }
 
   private boolean isLinkedTo(Person person, checkedPersons) {
