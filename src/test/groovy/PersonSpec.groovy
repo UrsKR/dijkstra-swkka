@@ -5,6 +5,7 @@ public class PersonSpec extends Specification {
   def alex = new Person(name: "Alex")
   def bettina = new Person(name: "Bettina")
   def carsten = new Person(name: "Carsten")
+  def doris = new Person(name: "Doris")
 
   def "everyone knows himself"() {
     expect:
@@ -39,5 +40,14 @@ public class PersonSpec extends Specification {
       bettina.befriend carsten
     then:
       alex.isLinkedTo carsten
+  }
+
+  def "a dead end does not hinder a link"(){
+    when:
+     alex.befriend bettina
+    bettina.befriend carsten
+    bettina.befriend doris
+    then:
+     alex.isLinkedTo doris
   }
 }

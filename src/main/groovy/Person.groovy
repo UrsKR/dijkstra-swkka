@@ -12,10 +12,10 @@ class Person {
   }
 
   boolean knows(Person person) {
-    (this == person) || (friends.contains (person))
+    (this == person) || (friends.contains(person))
   }
 
   boolean isLinkedTo(Person person) {
-    (knows (person)) || friends[0].knows(person)
+    knows(person) || friends[0].isLinkedTo(person)
   }
 }
