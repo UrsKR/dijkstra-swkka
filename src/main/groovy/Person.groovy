@@ -11,8 +11,7 @@ class Person {
   }
 
   boolean isLinkedTo(person) {
-    def checkedPersons = []
-    knows(person) || isLinkedTo(person, checkedPersons)
+    new SocialNetwork().areConnected(this, person)
   }
 
   private boolean isLinkedTo(person, checkedPersons) {
@@ -26,6 +25,12 @@ class Person {
   private boolean hasAFriendWhoIsLinkedTo(person, checkedPersons) {
     friends.any {Person friend ->
       friend.isLinkedTo(person, checkedPersons)
+    }
+  }
+
+  void contributeTo(SocialNetwork graphOfConnections) {
+    friends.each { Person friend ->
+      graphOfConnections.connectTo(friend)
     }
   }
 }
