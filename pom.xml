@@ -30,6 +30,12 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>0.5-groovy-1.8</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -60,6 +66,18 @@
                         <version>${groovy.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-maven</artifactId>
+                <version>0.5-groovy-1.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>find-specs</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
