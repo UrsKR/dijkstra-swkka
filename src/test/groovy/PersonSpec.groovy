@@ -18,6 +18,14 @@ public class PersonSpec extends Specification {
      alex.knows bettina
   }
 
+  def "people have more than one friend"() {
+    when:
+     alex.befriend bettina
+     alex.befriend carsten
+    then:
+     alex.knows bettina
+  }
+
   def "people are linked to their friends"() {
     when:
      alex.befriend bettina

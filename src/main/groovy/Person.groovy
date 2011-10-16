@@ -1,18 +1,18 @@
 class Person {
 
   private final def name
-  private def friend
+  private final def friends = []
 
   Person(name) {
     this.name = name
   }
 
   void befriend(Person person) {
-    friend = person
+    friends << person
   }
 
   boolean knows(Person person) {
-    (this == person) || (friend == person)
+    (this == person) || (friends.contains (person))
   }
 
   boolean isLinkedTo(Person person) {
