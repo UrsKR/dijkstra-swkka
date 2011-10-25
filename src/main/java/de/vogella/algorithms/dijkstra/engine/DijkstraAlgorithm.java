@@ -6,7 +6,11 @@ import de.vogella.algorithms.dijkstra.model.Vertex;
 
 import java.util.*;
 
-public class DijkstraAlgorithm implements PathFinder, PathStarter {
+public class DijkstraAlgorithm implements PathEnder, PathStarter {
+
+  public static DijkstraAlgorithm FindPathInGraph(Graph graph) {
+    return new DijkstraAlgorithm(graph);
+  }
 
   private final List<Edge> edges;
   private Set<Vertex> settledNodes;
@@ -14,11 +18,11 @@ public class DijkstraAlgorithm implements PathFinder, PathStarter {
   private Map<Vertex, Vertex> predecessors;
   private Map<Vertex, Integer> distance;
 
-  public DijkstraAlgorithm(Graph graph) {
+  private DijkstraAlgorithm(Graph graph) {
     this.edges = new ArrayList<Edge>(graph.getEdges());
   }
 
-  public void execute(Vertex source) {
+  public PathEnder from(Vertex source) {
     settledNodes = new HashSet<Vertex>();
     unSettledNodes = new HashSet<Vertex>();
     distance = new HashMap<Vertex, Integer>();
@@ -31,12 +35,13 @@ public class DijkstraAlgorithm implements PathFinder, PathStarter {
       unSettledNodes.remove(node);
       findMinimalDistances(node);
     }
+    return this;
   }
 
   /**
    * @return the shortest path from the source to the target or {@code null} if none.
    */
-  public LinkedList<Vertex> getPath(Vertex target) {
+  public LinkedList<Vertex> to(Vertex target) {
     LinkedList<Vertex> path = new LinkedList<Vertex>();
     Vertex step = target;
     // Check if a path exists

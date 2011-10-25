@@ -4,5 +4,5 @@ import de.vogella.algorithms.dijkstra.model.Vertex;
 
 public interface PathStarter {
 
-  void execute(Vertex source);
+  PathEnder from(Vertex source);
 }

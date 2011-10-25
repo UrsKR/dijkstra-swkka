@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm.FindPathInGraph;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.*;
 
@@ -25,9 +26,7 @@ public class DijkstraAlgorithm_Test {
     createEdges();
     Vertex source = getNode(0);
     Vertex target = getNode(10);
-    DijkstraAlgorithm algorithm = new DijkstraAlgorithm(graph);
-    algorithm.execute(source);
-    LinkedList<Vertex> path = algorithm.getPath(target);
+    LinkedList<Vertex> path = FindPathInGraph(graph).from(source).to(target);
     assertThat(path, hasItems(source, getNode(2), getNode(7), getNode(9), target));
   }
 

@@ -4,7 +4,7 @@ import de.vogella.algorithms.dijkstra.model.Vertex;
 
 import java.util.LinkedList;
 
-public interface PathFinder {
+public interface PathEnder {
 
-  LinkedList<Vertex> getPath(Vertex target);
+  LinkedList<Vertex> to(Vertex target);
 }
