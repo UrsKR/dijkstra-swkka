@@ -34,11 +34,8 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     return this;
   }
 
-  /**
-   * @return the shortest path from the source to the target or an empty path if none.
-   */
   public Path to(Node target) {
-    new Navigator(predecessors).findPathTo(target);
+    new Navigator(predecessors: predecessors).findPathTo(target);
   }
 
   private void findMinimalDistances(Node node) {

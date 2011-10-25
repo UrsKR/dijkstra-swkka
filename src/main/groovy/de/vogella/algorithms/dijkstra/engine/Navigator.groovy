@@ -1,14 +1,11 @@
 package de.vogella.algorithms.dijkstra.engine
 
 import de.vogella.algorithms.dijkstra.model.Path
+import de.vogella.algorithms.dijkstra.model.Node
 
 class Navigator {
 
-  private final Map<Node, Node> predecessors
-
-  Navigator(Map<Node, Node> predecessors) {
-    this.predecessors = predecessors;
-  }
+  private Map<Node, Node> predecessors
 
   Path findPathTo(Node target) {
     Path path = new Path();
