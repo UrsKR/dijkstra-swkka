@@ -20,7 +20,7 @@ public class Graph {
 
   public void addEdge(Vertex source, Vertex destination, int duration) {
     String id = "Edge_" + edges.size();
-    Edge edge = new Edge(id, source, destination, duration);
+    Edge edge = new Edge(source, destination, duration);
     edges.add(edge);
   }
 
