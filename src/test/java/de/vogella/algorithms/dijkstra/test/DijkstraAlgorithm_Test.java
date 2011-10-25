@@ -15,18 +15,17 @@ import static org.junit.Assert.assertThat;
 
 public class DijkstraAlgorithm_Test {
 
-  private final List<Vertex> nodes = new ArrayList<Vertex>();
   private final List<Edge> edges = new ArrayList<Edge>();
-  private final Graph graph = new Graph(nodes, edges);
+  private final Graph graph = new Graph(edges);
 
   @Test
   public void findsShortestPath() {
     createVertices();
     createEdges();
-    Vertex source = getNode(0);
-    Vertex target = getNode(10);
+    Vertex source = graph.getNode(0);
+    Vertex target = graph.getNode(10);
     Path resultPath = FindPathInGraph(graph).from(source).to(target);
-    Path expectedPath = new Path(source, getNode(2), getNode(7), getNode(9), target);
+    Path expectedPath = new Path(source, graph.getNode(2), graph.getNode(7), graph.getNode(9), target);
     assertThat(resultPath, is(expectedPath));
   }
 
@@ -48,17 +47,13 @@ public class DijkstraAlgorithm_Test {
   private void createVertices() {
     for (int i = 0; i < 11; i++) {
       Vertex location = new Vertex("Node_" + i);
-      nodes.add(location);
+      graph.addNode(location);
     }
   }
 
   private void addLane(int sourceLocNo, int destLocNo, int duration) {
     String laneId = "Edge_" + edges.size();
-    Edge lane = new Edge(laneId, getNode(sourceLocNo), getNode(destLocNo), duration);
+    Edge lane = new Edge(laneId, graph.getNode(sourceLocNo), graph.getNode(destLocNo), duration);
     edges.add(lane);
-  }
-
-  private Vertex getNode(int number) {
-    return nodes.get(number);
   }
 }
