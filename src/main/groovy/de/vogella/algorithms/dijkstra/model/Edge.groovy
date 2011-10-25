@@ -28,4 +28,8 @@ public class Edge {
   public String toString() {
     return source + " " + destination;
   }
+
+  boolean connects(Node node, Node target) {
+    this.source == node && this.destination == target
+  }
 }

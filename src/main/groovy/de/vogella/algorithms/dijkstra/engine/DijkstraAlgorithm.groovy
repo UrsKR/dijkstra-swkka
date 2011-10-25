@@ -74,8 +74,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   private int getDistance(Node node, Node target) {
     Integer distance
     graph.doWithEdges {Edge edge ->
-      if (edge.getSource().equals(node)
-              && edge.getDestination().equals(target)) {
+      if (edge.connects(node, target)) {
         distance = edge.getWeight();
       }
     }
@@ -114,11 +113,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   }
 
   private int getShortestDistance(Node destination) {
-    Integer d = distance.get(destination);
-    if (d == null) {
-      return Integer.MAX_VALUE;
-    } else {
-      return d;
-    }
+    Integer distance = this.distance.get(destination);
+    distance?:Integer.MAX_VALUE;
   }
 }
