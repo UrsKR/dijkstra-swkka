@@ -15,7 +15,6 @@ public class DijkstraAlgorithm {
   private Map<Vertex, Integer> distance;
 
   public DijkstraAlgorithm(Graph graph) {
-    // Create a copy of the array so that we can operate on this array
     this.edges = new ArrayList<Edge>(graph.getEdges());
   }
 
@@ -34,10 +33,9 @@ public class DijkstraAlgorithm {
     }
   }
 
-  /*
-     * This method returns the path from the source to the selected target and
-     * NULL if no path exists
-     */
+  /**
+   * @return the shortest path from the source to the target or {@code null} if none.
+   */
   public LinkedList<Vertex> getPath(Vertex target) {
     LinkedList<Vertex> path = new LinkedList<Vertex>();
     Vertex step = target;
