@@ -15,13 +15,11 @@ import static org.junit.Assert.*;
 
 public class TestDijkstraAlgorithm {
 
-  private List<Vertex> nodes;
-  private List<Edge> edges;
+  private final List<Vertex> nodes = new ArrayList<Vertex>();
+  private final List<Edge> edges = new ArrayList<Edge>();
 
   @Test
-  public void testExcute() {
-    nodes = new ArrayList<Vertex>();
-    edges = new ArrayList<Edge>();
+  public void findsShortestPath() {
     for (int i = 0; i < 11; i++) {
       Vertex location = new Vertex("Node_" + i, "Node_" + i);
       nodes.add(location);
