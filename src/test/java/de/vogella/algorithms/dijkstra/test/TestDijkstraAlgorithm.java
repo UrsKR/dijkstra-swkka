@@ -23,9 +23,9 @@ public class TestDijkstraAlgorithm {
   public void findsShortestPath() {
     createVertices();
     createEdges();
-    DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-    dijkstra.execute(nodes.get(0));
-    LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
+    DijkstraAlgorithm algorithm = new DijkstraAlgorithm(graph);
+    algorithm.execute(nodes.get(0));
+    LinkedList<Vertex> path = algorithm.getPath(nodes.get(10));
     assertNotNull(path);
     assertTrue(path.size() > 0);
     assertThat(path, hasItems(nodes.get(0), nodes.get(2), nodes.get(7), nodes.get(9), nodes.get(10)));
