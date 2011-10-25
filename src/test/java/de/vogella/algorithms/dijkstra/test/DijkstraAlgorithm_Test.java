@@ -47,7 +47,7 @@ public class DijkstraAlgorithm_Test {
 
   private void createVertices() {
     for (int i = 0; i < 11; i++) {
-      Vertex location = new Vertex("Node_" + i, "Node_" + i);
+      Vertex location = new Vertex("Node_" + i);
       nodes.add(location);
     }
   }

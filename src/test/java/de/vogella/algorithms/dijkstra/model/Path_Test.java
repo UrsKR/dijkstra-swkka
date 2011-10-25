@@ -48,6 +48,6 @@ public class Path_Test {
   }
 
   private Vertex createVertex(String id) {
-    return new Vertex(id, id);
+    return new Vertex(id);
   }
 }

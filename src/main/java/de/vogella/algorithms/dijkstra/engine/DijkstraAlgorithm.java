@@ -9,7 +9,7 @@ import java.util.*;
 
 public class DijkstraAlgorithm implements PathEnder, PathStarter {
 
-  public static DijkstraAlgorithm FindPathInGraph(Graph graph) {
+  public static PathStarter FindPathInGraph(Graph graph) {
     return new DijkstraAlgorithm(graph);
   }
 
