@@ -6,11 +6,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
-public class Vertex {
+public class Node {
 
   final private String id;
 
-  public Vertex(String id) {
+  public Node(String id) {
     this.id = id;
   }
 

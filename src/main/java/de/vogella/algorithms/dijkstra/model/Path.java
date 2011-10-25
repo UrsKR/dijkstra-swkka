@@ -9,17 +9,17 @@ import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCod
 
 public class Path {
 
-  private List<Vertex> nodes;
+  private List<Node> nodes;
 
   public Path() {
-    this(new ArrayList<Vertex>());
+    this(new ArrayList<Node>());
   }
 
-  public Path(Vertex... vertices) {
+  public Path(Node... vertices) {
     this(asList(vertices));
   }
 
-  public Path(List<Vertex> nodes) {
+  public Path(List<Node> nodes) {
     this.nodes = nodes;
   }
 

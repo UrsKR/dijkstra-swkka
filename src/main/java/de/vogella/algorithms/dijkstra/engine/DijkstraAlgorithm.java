@@ -3,7 +3,7 @@ package de.vogella.algorithms.dijkstra.engine;
 import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
 import de.vogella.algorithms.dijkstra.model.Path;
-import de.vogella.algorithms.dijkstra.model.Vertex;
+import de.vogella.algorithms.dijkstra.model.Node;
 
 import java.util.*;
 
@@ -14,24 +14,24 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   }
 
   private final List<Edge> edges;
-  private Set<Vertex> settledNodes;
-  private Set<Vertex> unSettledNodes;
-  private Map<Vertex, Vertex> predecessors;
-  private Map<Vertex, Integer> distance;
+  private Set<Node> settledNodes;
+  private Set<Node> unSettledNodes;
+  private Map<Node, Node> predecessors;
+  private Map<Node, Integer> distance;
 
   private DijkstraAlgorithm(Graph graph) {
     this.edges = new ArrayList<Edge>(graph.getEdges());
   }
 
-  public PathEnder from(Vertex source) {
-    settledNodes = new HashSet<Vertex>();
-    unSettledNodes = new HashSet<Vertex>();
-    distance = new HashMap<Vertex, Integer>();
-    predecessors = new HashMap<Vertex, Vertex>();
+  public PathEnder from(Node source) {
+    settledNodes = new HashSet<Node>();
+    unSettledNodes = new HashSet<Node>();
+    distance = new HashMap<Node, Integer>();
+    predecessors = new HashMap<Node, Node>();
     distance.put(source, 0);
     unSettledNodes.add(source);
     while (unSettledNodes.size() > 0) {
-      Vertex node = getMinimum(unSettledNodes);
+      Node node = getMinimum(unSettledNodes);
       settledNodes.add(node);
       unSettledNodes.remove(node);
       findMinimalDistances(node);
@@ -42,9 +42,9 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   /**
    * @return the shortest path from the source to the target or {@code null} if none.
    */
-  public Path to(Vertex target) {
-    LinkedList<Vertex> path = new LinkedList<Vertex>();
-    Vertex step = target;
+  public Path to(Node target) {
+    LinkedList<Node> path = new LinkedList<Node>();
+    Node step = target;
     // Check if a path exists
     if (predecessors.get(step) == null) {
       return null;
@@ -59,9 +59,9 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     return new Path(path);
   }
 
-  private void findMinimalDistances(Vertex node) {
-    List<Vertex> adjacentNodes = getNeighbors(node);
-    for (Vertex target : adjacentNodes) {
+  private void findMinimalDistances(Node node) {
+    List<Node> adjacentNodes = getNeighbors(node);
+    for (Node target : adjacentNodes) {
       if (getShortestDistance(target) > getShortestDistance(node)
         + getDistance(node, target)) {
         distance.put(target, getShortestDistance(node)
@@ -72,7 +72,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     }
   }
 
-  private int getDistance(Vertex node, Vertex target) {
+  private int getDistance(Node node, Node target) {
     for (Edge edge : edges) {
       if (edge.getSource().equals(node)
         && edge.getDestination().equals(target)) {
@@ -82,8 +82,8 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     throw new RuntimeException("Should not happen");
   }
 
-  private List<Vertex> getNeighbors(Vertex node) {
-    List<Vertex> neighbors = new ArrayList<Vertex>();
+  private List<Node> getNeighbors(Node node) {
+    List<Node> neighbors = new ArrayList<Node>();
     for (Edge edge : edges) {
       if (edge.getSource().equals(node)
         && !isSettled(edge.getDestination())) {
@@ -93,25 +93,25 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     return neighbors;
   }
 
-  private Vertex getMinimum(Set<Vertex> vertexes) {
-    Vertex minimum = null;
-    for (Vertex vertex : vertexes) {
+  private Node getMinimum(Set<Node> nodes) {
+    Node minimum = null;
+    for (Node node : nodes) {
       if (minimum == null) {
-        minimum = vertex;
+        minimum = node;
       } else {
-        if (getShortestDistance(vertex) < getShortestDistance(minimum)) {
-          minimum = vertex;
+        if (getShortestDistance(node) < getShortestDistance(minimum)) {
+          minimum = node;
         }
       }
     }
     return minimum;
   }
 
-  private boolean isSettled(Vertex vertex) {
-    return settledNodes.contains(vertex);
+  private boolean isSettled(Node node) {
+    return settledNodes.contains(node);
   }
 
-  private int getShortestDistance(Vertex destination) {
+  private int getShortestDistance(Node destination) {
     Integer d = distance.get(destination);
     if (d == null) {
       return Integer.MAX_VALUE;

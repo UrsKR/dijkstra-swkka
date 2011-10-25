@@ -37,11 +37,11 @@ public class Graph_Test {
     graph.addNode();
   }
 
-  private Vertex firstNode() {
+  private Node firstNode() {
     return nodeWithNumber(0);
   }
 
-  private Vertex nodeWithNumber(int number) {
+  private Node nodeWithNumber(int number) {
     return graph.getNode(number);
   }
 }

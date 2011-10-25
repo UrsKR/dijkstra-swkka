@@ -47,7 +47,7 @@ public class Path_Test {
     assertThat(aPath.hashCode(), is(anotherPath.hashCode()));
   }
 
-  private Vertex createVertex(String id) {
-    return new Vertex(id);
+  private Node createVertex(String id) {
+    return new Node(id);
   }
 }

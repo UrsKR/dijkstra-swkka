@@ -1,11 +1,9 @@
 package de.vogella.algorithms.dijkstra.engine;
 
 import de.vogella.algorithms.dijkstra.model.Path;
-import de.vogella.algorithms.dijkstra.model.Vertex;
-
-import java.util.LinkedList;
+import de.vogella.algorithms.dijkstra.model.Node;
 
 public interface PathEnder {
 
-  Path to(Vertex target);
+  Path to(Node target);
 }

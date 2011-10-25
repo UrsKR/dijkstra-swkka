@@ -2,7 +2,7 @@ package de.vogella.algorithms.dijkstra.test;
 
 import de.vogella.algorithms.dijkstra.model.Graph;
 import de.vogella.algorithms.dijkstra.model.Path;
-import de.vogella.algorithms.dijkstra.model.Vertex;
+import de.vogella.algorithms.dijkstra.model.Node;
 import org.junit.Test;
 
 import static de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm.FindPathInGraph;
@@ -17,8 +17,8 @@ public class DijkstraAlgorithm_Test {
   public void findsShortestPath() {
     createElevenVertices();
     createEdges();
-    Vertex source = graph.getNode(0);
-    Vertex target = graph.getNode(10);
+    Node source = graph.getNode(0);
+    Node target = graph.getNode(10);
     Path resultPath = FindPathInGraph(graph).from(source).to(target);
     Path expectedPath = new Path(source, graph.getNode(2), graph.getNode(7), graph.getNode(9), target);
     assertThat(resultPath, is(expectedPath));
@@ -46,8 +46,8 @@ public class DijkstraAlgorithm_Test {
   }
 
   private void addLane(int sourceLocNo, int destLocNo, int duration) {
-    Vertex source = graph.getNode(sourceLocNo);
-    Vertex destination = graph.getNode(destLocNo);
+    Node source = graph.getNode(sourceLocNo);
+    Node destination = graph.getNode(destLocNo);
     graph.addEdge(source, destination, duration);
   }
 }
