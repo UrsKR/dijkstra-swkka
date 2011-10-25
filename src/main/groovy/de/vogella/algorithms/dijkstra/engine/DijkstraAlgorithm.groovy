@@ -39,17 +39,20 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
    */
   public Path to(Node target) {
     Path path = new Path();
-    Node step = target;
-    // Check if a path exists
-    if (!predecessors.get(step)) {
+    if (thereIsNoPathFrom(target)) {
       return path;
     }
+    Node step = target;
     path.addNode(step);
     while (predecessors.get(step)) {
       step = predecessors.get(step);
       path.addNode(step);
     }
     return path
+  }
+
+  private def thereIsNoPathFrom(Node step) {
+    return !predecessors.get(step)
   }
 
   private void findMinimalDistances(Node node) {
