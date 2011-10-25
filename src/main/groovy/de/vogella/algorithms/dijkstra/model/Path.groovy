@@ -9,7 +9,7 @@ import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCod
 
 public class Path {
 
-  private List<Node> nodes;
+  private List<Node> nodes = new ArrayList<Node>();
 
   public Path() {
     this(new ArrayList<Node>());
@@ -21,6 +21,10 @@ public class Path {
 
   public Path(List<Node> nodes) {
     this.nodes = nodes;
+  }
+
+  void addNode(Node node) {
+    nodes.add(0, node)
   }
 
   @Override

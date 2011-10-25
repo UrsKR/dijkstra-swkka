@@ -38,20 +38,18 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
    * @return the shortest path from the source to the target or an empty path if none.
    */
   public Path to(Node target) {
-    LinkedList<Node> path = new LinkedList<Node>();
+    Path path = new Path();
     Node step = target;
     // Check if a path exists
     if (!predecessors.get(step)) {
-      return new Path();
+      return path;
     }
-    path.add(step);
+    path.addNode(step);
     while (predecessors.get(step)) {
       step = predecessors.get(step);
-      path.add(step);
+      path.addNode(step);
     }
-    // Put it into the correct order
-    Collections.reverse(path);
-    return new Path(path);
+    return path
   }
 
   private void findMinimalDistances(Node node) {
