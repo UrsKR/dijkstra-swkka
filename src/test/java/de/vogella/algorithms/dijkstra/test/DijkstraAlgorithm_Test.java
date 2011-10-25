@@ -13,7 +13,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.*;
 
-public class TestDijkstraAlgorithm {
+public class DijkstraAlgorithm_Test {
 
   private final List<Vertex> nodes = new ArrayList<Vertex>();
   private final List<Edge> edges = new ArrayList<Edge>();
