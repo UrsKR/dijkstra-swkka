@@ -6,7 +6,7 @@ import de.vogella.algorithms.dijkstra.model.Vertex;
 
 import java.util.*;
 
-public class DijkstraAlgorithm {
+public class DijkstraAlgorithm implements PathFinder, PathStarter {
 
   private final List<Edge> edges;
   private Set<Vertex> settledNodes;
