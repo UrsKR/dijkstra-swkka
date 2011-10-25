@@ -12,10 +12,10 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     return new DijkstraAlgorithm(graph);
   }
 
-  private final Set<Node> settledNodes = new HashSet<Node>();
-  private final Set<Node> unSettledNodes = new HashSet<Node>();
-  private final Map<Node, Node> predecessors= new HashMap<Node, Node>();
-  private final Map<Node, Integer> distance= new HashMap<Node, Integer>();
+  private final Set<Node> settledNodes = []
+  private final Set<Node> unSettledNodes = []
+  private final Map<Node, Node> predecessors= [:]
+  private final Map<Node, Integer> distance= [:]
   private final Graph graph
 
   private DijkstraAlgorithm(Graph graph) {
