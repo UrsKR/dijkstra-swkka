@@ -17,13 +17,21 @@ public class TestDijkstraAlgorithm {
 
   private final List<Vertex> nodes = new ArrayList<Vertex>();
   private final List<Edge> edges = new ArrayList<Edge>();
+  private final Graph graph = new Graph(nodes, edges);
 
   @Test
   public void findsShortestPath() {
-    for (int i = 0; i < 11; i++) {
-      Vertex location = new Vertex("Node_" + i, "Node_" + i);
-      nodes.add(location);
-    }
+    createVertices();
+    createEdges();
+    DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
+    dijkstra.execute(nodes.get(0));
+    LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
+    assertNotNull(path);
+    assertTrue(path.size() > 0);
+    assertThat(path, hasItems(nodes.get(0), nodes.get(2), nodes.get(7), nodes.get(9), nodes.get(10)));
+  }
+
+  private void createEdges() {
     addLane("Edge_0", 0, 1, 85);
     addLane("Edge_1", 0, 2, 217);
     addLane("Edge_2", 0, 4, 173);
@@ -36,14 +44,13 @@ public class TestDijkstraAlgorithm {
     addLane("Edge_9", 4, 9, 502);
     addLane("Edge_10", 9, 10, 40);
     addLane("Edge_11", 1, 10, 600);
-    // Lets check from location Loc_1 to Loc_10
-    Graph graph = new Graph(nodes, edges);
-    DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-    dijkstra.execute(nodes.get(0));
-    LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
-    assertNotNull(path);
-    assertTrue(path.size() > 0);
-    assertThat(path, hasItems(nodes.get(0), nodes.get(2), nodes.get(7), nodes.get(9), nodes.get(10)));
+  }
+
+  private void createVertices() {
+    for (int i = 0; i < 11; i++) {
+      Vertex location = new Vertex("Node_" + i, "Node_" + i);
+      nodes.add(location);
+    }
   }
 
   private void addLane(String laneId, int sourceLocNo, int destLocNo, int duration) {
