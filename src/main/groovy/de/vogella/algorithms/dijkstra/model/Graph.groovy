@@ -23,10 +23,6 @@ public class Graph {
     edges.add(edge);
   }
 
-  public List<Edge> getEdges() {
-    return edges;
-  }
-
   void doWithEdges(Closure operation){
     edges.each operation
   }

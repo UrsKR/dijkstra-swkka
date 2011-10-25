@@ -1,11 +1,10 @@
 package de.vogella.algorithms.dijkstra.engine;
 
-import de.vogella.algorithms.dijkstra.model.Graph;
-import de.vogella.algorithms.dijkstra.model.Node;
-import de.vogella.algorithms.dijkstra.model.Edge;
-import de.vogella.algorithms.dijkstra.model.Path;
 
-import java.util.*;
+import de.vogella.algorithms.dijkstra.model.Edge
+import de.vogella.algorithms.dijkstra.model.Graph
+import de.vogella.algorithms.dijkstra.model.Node
+import de.vogella.algorithms.dijkstra.model.Path
 
 public class DijkstraAlgorithm implements PathEnder, PathStarter {
 
@@ -13,14 +12,14 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     return new DijkstraAlgorithm(graph);
   }
 
-  private final List<Edge> edges;
+  private final Graph graph
   private Set<Node> settledNodes;
   private Set<Node> unSettledNodes;
   private Map<Node, Node> predecessors;
   private Map<Node, Integer> distance;
 
   private DijkstraAlgorithm(Graph graph) {
-    this.edges = new ArrayList<Edge>(graph.getEdges());
+    this.graph = graph;
   }
 
   public PathEnder from(Node source) {
@@ -61,11 +60,11 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
 
   private void findMinimalDistances(Node node) {
     List<Node> adjacentNodes = getNeighbors(node);
-    for (Node target : adjacentNodes) {
+    for (Node target: adjacentNodes) {
       if (getShortestDistance(target) > getShortestDistance(node)
-        + getDistance(node, target)) {
+              + getDistance(node, target)) {
         distance.put(target, getShortestDistance(node)
-          + getDistance(node, target));
+                + getDistance(node, target));
         predecessors.put(target, node);
         unSettledNodes.add(target);
       }
@@ -73,20 +72,23 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   }
 
   private int getDistance(Node node, Node target) {
-    for (Edge edge : edges) {
+    Integer distance
+    graph.doWithEdges {Edge edge ->
       if (edge.getSource().equals(node)
-        && edge.getDestination().equals(target)) {
-        return edge.getWeight();
+              && edge.getDestination().equals(target)) {
+        distance = edge.getWeight();
       }
+    }
+    if (distance){
+      return distance;
     }
     throw new RuntimeException("Should not happen");
   }
 
   private List<Node> getNeighbors(Node node) {
     List<Node> neighbors = new ArrayList<Node>();
-    for (Edge edge : edges) {
-      if (edge.getSource().equals(node)
-        && !isSettled(edge.getDestination())) {
+    graph.doWithEdges {Edge edge ->
+      if (edge.getSource().equals(node) && !isSettled(edge.getDestination())) {
         neighbors.add(edge.getDestination());
       }
     }
@@ -95,7 +97,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
 
   private Node getMinimum(Set<Node> nodes) {
     Node minimum = null;
-    for (Node node : nodes) {
+    for (Node node: nodes) {
       if (minimum == null) {
         minimum = node;
       } else {

@@ -2,6 +2,8 @@ package de.vogella.algorithms.dijkstra.model;
 
 
 import spock.lang.Specification
+import org.spockframework.util.Assert
+import static org.spockframework.util.Assert.fail
 
 public class GraphSpec extends Specification {
 
@@ -16,7 +18,7 @@ public class GraphSpec extends Specification {
 
   def "Initial graph has no edges"() {
     expect:
-      graph.getEdges().size() == 0
+      graph.doWithEdges {fail("There is an edge")}
   }
 
   def "creates one new node per call"() {
