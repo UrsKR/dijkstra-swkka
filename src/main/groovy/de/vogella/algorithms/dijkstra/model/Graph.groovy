@@ -26,4 +26,8 @@ public class Graph {
   public List<Edge> getEdges() {
     return edges;
   }
+
+  void doWithEdges(Closure operation){
+    edges.each operation
+  }
 }
