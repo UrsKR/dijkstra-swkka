@@ -23,12 +23,12 @@ public class TestDijkstraAlgorithm {
   public void findsShortestPath() {
     createVertices();
     createEdges();
+    Vertex source = getNode(0);
+    Vertex target = getNode(10);
     DijkstraAlgorithm algorithm = new DijkstraAlgorithm(graph);
-    algorithm.execute(nodes.get(0));
-    LinkedList<Vertex> path = algorithm.getPath(nodes.get(10));
-    assertNotNull(path);
-    assertTrue(path.size() > 0);
-    assertThat(path, hasItems(nodes.get(0), nodes.get(2), nodes.get(7), nodes.get(9), nodes.get(10)));
+    algorithm.execute(source);
+    LinkedList<Vertex> path = algorithm.getPath(target);
+    assertThat(path, hasItems(source, getNode(2), getNode(7), getNode(9), target));
   }
 
   private void createEdges() {
@@ -54,7 +54,11 @@ public class TestDijkstraAlgorithm {
   }
 
   private void addLane(String laneId, int sourceLocNo, int destLocNo, int duration) {
-    Edge lane = new Edge(laneId, nodes.get(sourceLocNo), nodes.get(destLocNo), duration);
+    Edge lane = new Edge(laneId, getNode(sourceLocNo), getNode(destLocNo), duration);
     edges.add(lane);
+  }
+
+  private Vertex getNode(int number) {
+    return nodes.get(number);
   }
 }
