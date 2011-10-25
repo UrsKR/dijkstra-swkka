@@ -1,17 +1,26 @@
 package de.vogella.algorithms.dijkstra.engine;
 
-import de.vogella.algorithms.dijkstra.model.Graph;
-import de.vogella.algorithms.dijkstra.model.Path;
-import de.vogella.algorithms.dijkstra.model.Node;
-import org.junit.Test;
 
-import static de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm.FindPathInGraph;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import de.vogella.algorithms.dijkstra.model.Graph
+import de.vogella.algorithms.dijkstra.model.Node
+import de.vogella.algorithms.dijkstra.model.Path
+import org.junit.Test
+import static de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm.FindPathInGraph
+import static org.junit.Assert.assertThat
+import static org.hamcrest.CoreMatchers.is
 
 public class DijkstraAlgorithm_Test {
 
   private final Graph graph = new Graph();
+
+  @Test
+  public void returnsEmptyPathIfThereIsNoConnection() {
+    createElevenVertices();
+    Node source = graph.getNode(0);
+    Node target = graph.getNode(10);
+    Path resultPath = FindPathInGraph(graph).from(source).to(target);
+    assertThat(resultPath, is(new Path()))
+  }
 
   @Test
   public void findsShortestPath() {

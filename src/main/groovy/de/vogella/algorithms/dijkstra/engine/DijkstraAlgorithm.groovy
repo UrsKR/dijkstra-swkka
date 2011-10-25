@@ -42,7 +42,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     Node step = target;
     // Check if a path exists
     if (predecessors.get(step) == null) {
-      return null;
+      return new Path();
     }
     path.add(step);
     while (predecessors.get(step) != null) {
