@@ -27,10 +27,8 @@ class ShortestPathCalculator {
   private void findMinimalDistances(Node node) {
     List<Node> adjacentNodes = getNeighbors(node);
     for (Node target: adjacentNodes) {
-      if (getShortestDistance(target) > getShortestDistance(node)
-              + getDistance(node, target)) {
-        distance.put(target, getShortestDistance(node)
-                + getDistance(node, target));
+      if (getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target)) {
+        distance.put(target, getShortestDistance(node) + getDistance(node, target));
         predecessors.put(target, node);
         unSettledNodes.add(target);
       }
