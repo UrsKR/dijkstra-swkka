@@ -1,18 +1,17 @@
 package de.vogella.algorithms.dijkstra.test;
 
-import de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm;
 import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
+import de.vogella.algorithms.dijkstra.model.Path;
 import de.vogella.algorithms.dijkstra.model.Vertex;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm.FindPathInGraph;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class DijkstraAlgorithm_Test {
 
@@ -26,23 +25,24 @@ public class DijkstraAlgorithm_Test {
     createEdges();
     Vertex source = getNode(0);
     Vertex target = getNode(10);
-    LinkedList<Vertex> path = FindPathInGraph(graph).from(source).to(target);
-    assertThat(path, hasItems(source, getNode(2), getNode(7), getNode(9), target));
+    Path resultPath = FindPathInGraph(graph).from(source).to(target);
+    Path expectedPath = new Path(source, getNode(2), getNode(7), getNode(9), target);
+    assertThat(resultPath, is(expectedPath));
   }
 
   private void createEdges() {
-    addLane("Edge_0", 0, 1, 85);
-    addLane("Edge_1", 0, 2, 217);
-    addLane("Edge_2", 0, 4, 173);
-    addLane("Edge_3", 2, 6, 186);
-    addLane("Edge_4", 2, 7, 103);
-    addLane("Edge_5", 3, 7, 183);
-    addLane("Edge_6", 5, 8, 250);
-    addLane("Edge_7", 8, 9, 84);
-    addLane("Edge_8", 7, 9, 167);
-    addLane("Edge_9", 4, 9, 502);
-    addLane("Edge_10", 9, 10, 40);
-    addLane("Edge_11", 1, 10, 600);
+    addLane(0, 1, 85);
+    addLane(0, 2, 217);
+    addLane(0, 4, 173);
+    addLane(2, 6, 186);
+    addLane(2, 7, 103);
+    addLane(3, 7, 183);
+    addLane(5, 8, 250);
+    addLane(8, 9, 84);
+    addLane(7, 9, 167);
+    addLane(4, 9, 502);
+    addLane(9, 10, 40);
+    addLane(1, 10, 600);
   }
 
   private void createVertices() {
@@ -52,7 +52,8 @@ public class DijkstraAlgorithm_Test {
     }
   }
 
-  private void addLane(String laneId, int sourceLocNo, int destLocNo, int duration) {
+  private void addLane(int sourceLocNo, int destLocNo, int duration) {
+    String laneId = "Edge_" + edges.size();
     Edge lane = new Edge(laneId, getNode(sourceLocNo), getNode(destLocNo), duration);
     edges.add(lane);
   }

@@ -2,6 +2,7 @@ package de.vogella.algorithms.dijkstra.engine;
 
 import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
+import de.vogella.algorithms.dijkstra.model.Path;
 import de.vogella.algorithms.dijkstra.model.Vertex;
 
 import java.util.*;
@@ -41,7 +42,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   /**
    * @return the shortest path from the source to the target or {@code null} if none.
    */
-  public LinkedList<Vertex> to(Vertex target) {
+  public Path to(Vertex target) {
     LinkedList<Vertex> path = new LinkedList<Vertex>();
     Vertex step = target;
     // Check if a path exists
@@ -55,7 +56,7 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
     }
     // Put it into the correct order
     Collections.reverse(path);
-    return path;
+    return new Path(path);
   }
 
   private void findMinimalDistances(Vertex node) {
