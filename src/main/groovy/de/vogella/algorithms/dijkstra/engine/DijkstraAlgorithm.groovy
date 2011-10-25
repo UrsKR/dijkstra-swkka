@@ -13,20 +13,16 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   }
 
   private final Graph graph
-  private Set<Node> settledNodes;
-  private Set<Node> unSettledNodes;
-  private Map<Node, Node> predecessors;
-  private Map<Node, Integer> distance;
+  private Set<Node> settledNodes = new HashSet<Node>();
+  private Set<Node> unSettledNodes = new HashSet<Node>();
+  private Map<Node, Node> predecessors= new HashMap<Node, Node>();
+  private Map<Node, Integer> distance= new HashMap<Node, Integer>();
 
   private DijkstraAlgorithm(Graph graph) {
     this.graph = graph;
   }
 
   public PathEnder from(Node source) {
-    settledNodes = new HashSet<Node>();
-    unSettledNodes = new HashSet<Node>();
-    distance = new HashMap<Node, Integer>();
-    predecessors = new HashMap<Node, Node>();
     distance.put(source, 0);
     unSettledNodes.add(source);
     while (unSettledNodes.size() > 0) {
