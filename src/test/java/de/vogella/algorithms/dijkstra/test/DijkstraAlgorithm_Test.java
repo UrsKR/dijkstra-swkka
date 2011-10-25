@@ -1,13 +1,9 @@
 package de.vogella.algorithms.dijkstra.test;
 
-import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
 import de.vogella.algorithms.dijkstra.model.Path;
 import de.vogella.algorithms.dijkstra.model.Vertex;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm.FindPathInGraph;
 import static org.hamcrest.CoreMatchers.is;
@@ -50,8 +46,8 @@ public class DijkstraAlgorithm_Test {
   }
 
   private void addLane(int sourceLocNo, int destLocNo, int duration) {
-    String laneId = "Edge_" + graph.getEdges().size();
-    Edge lane = new Edge(laneId, graph.getNode(sourceLocNo), graph.getNode(destLocNo), duration);
-    graph.getEdges().add(lane);
+    Vertex source = graph.getNode(sourceLocNo);
+    Vertex destination = graph.getNode(destLocNo);
+    graph.addEdge(source, destination, duration);
   }
 }
