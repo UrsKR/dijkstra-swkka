@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-	private final List<Vertex> vertexes  = new ArrayList<Vertex>();
-	private final List<Edge> edges;
 
-	public Graph(List<Edge> edges) {
-		this.edges = edges;
-	}
+  private final List<Vertex> vertexes = new ArrayList<Vertex>();
+  private final List<Edge> edges = new ArrayList<Edge>();
 
   public List<Edge> getEdges() {
-		return edges;
-	}
+    return edges;
+  }
 
   public void addNode() {
     Vertex location = new Vertex("Node_" + vertexes.size());

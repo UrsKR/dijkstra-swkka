@@ -15,8 +15,7 @@ import static org.junit.Assert.assertThat;
 
 public class DijkstraAlgorithm_Test {
 
-  private final List<Edge> edges = new ArrayList<Edge>();
-  private final Graph graph = new Graph(edges);
+  private final Graph graph = new Graph();
 
   @Test
   public void findsShortestPath() {
@@ -51,8 +50,8 @@ public class DijkstraAlgorithm_Test {
   }
 
   private void addLane(int sourceLocNo, int destLocNo, int duration) {
-    String laneId = "Edge_" + edges.size();
+    String laneId = "Edge_" + graph.getEdges().size();
     Edge lane = new Edge(laneId, graph.getNode(sourceLocNo), graph.getNode(destLocNo), duration);
-    edges.add(lane);
+    graph.getEdges().add(lane);
   }
 }
