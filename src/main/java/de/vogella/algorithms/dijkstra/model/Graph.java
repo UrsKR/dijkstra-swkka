@@ -15,7 +15,8 @@ public class Graph {
 		return edges;
 	}
 
-  public void addNode(Vertex location) {
+  public void addNode() {
+    Vertex location = new Vertex("Node_" + vertexes.size());
     vertexes.add(location);
   }
 

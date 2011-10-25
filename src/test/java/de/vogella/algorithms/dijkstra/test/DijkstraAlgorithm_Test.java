@@ -20,7 +20,7 @@ public class DijkstraAlgorithm_Test {
 
   @Test
   public void findsShortestPath() {
-    createVertices();
+    createElevenVertices();
     createEdges();
     Vertex source = graph.getNode(0);
     Vertex target = graph.getNode(10);
@@ -44,10 +44,9 @@ public class DijkstraAlgorithm_Test {
     addLane(1, 10, 600);
   }
 
-  private void createVertices() {
+  private void createElevenVertices() {
     for (int i = 0; i < 11; i++) {
-      Vertex location = new Vertex("Node_" + i);
-      graph.addNode(location);
+      graph.addNode();
     }
   }
 
