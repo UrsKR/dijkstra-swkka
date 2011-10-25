@@ -16,20 +16,20 @@ public class Edge {
     return destination;
   }
 
-  public Node getSource() {
-    return source;
-  }
-
   public int getWeight() {
     return weight;
+  }
+
+  boolean connects(Node node, Node target) {
+    this.source == node && this.destination == target
+  }
+
+  boolean startsAt(Node node) {
+    return source.equals(node)
   }
 
   @Override
   public String toString() {
     return source + " " + destination;
-  }
-
-  boolean connects(Node node, Node target) {
-    this.source == node && this.destination == target
   }
 }

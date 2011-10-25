@@ -83,29 +83,32 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   private List<Node> getNeighbors(Node node) {
     List<Node> neighbors = new ArrayList<Node>();
     graph.doWithEdges {Edge edge ->
-      if (edge.getSource().equals(node) && !isSettled(edge.getDestination())) {
+      if (edge.startsAt(node) && !isSettled(edge.getDestination())) {
         neighbors.add(edge.getDestination());
       }
     }
     return neighbors;
   }
 
-  private Node getMinimum(Set<Node> nodes) {
-    Node minimum = null;
-    for (Node node: nodes) {
-      if (minimum == null) {
-        minimum = node;
-      } else {
-        if (getShortestDistance(node) < getShortestDistance(minimum)) {
-          minimum = node;
-        }
-      }
-    }
-    return minimum;
-  }
-
   private boolean isSettled(Node node) {
     return settledNodes.contains(node);
+  }
+
+  private Node getMinimum(Set<Node> nodes) {
+    Node nearestNeighbourCandidate
+    for (Node challenger: nodes) {
+      nearestNeighbourCandidate = evaluateNewCandidateForNearestNeighbour(nearestNeighbourCandidate, challenger)
+    }
+    return nearestNeighbourCandidate
+  }
+
+  private def evaluateNewCandidateForNearestNeighbour(Node champion, Node challenger) {
+    def thereIsNoChampion= !champion
+    def theChallengerIsCloser = getShortestDistance(challenger) < getShortestDistance(champion)
+    if (thereIsNoChampion || theChallengerIsCloser) {
+      return challenger;
+    }
+    return champion
   }
 
   private int getShortestDistance(Node destination) {
