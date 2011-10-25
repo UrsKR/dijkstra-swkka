@@ -35,17 +35,17 @@ public class DijkstraAlgorithm implements PathEnder, PathStarter {
   }
 
   /**
-   * @return the shortest path from the source to the target or {@code null} if none.
+   * @return the shortest path from the source to the target or an empty path if none.
    */
   public Path to(Node target) {
     LinkedList<Node> path = new LinkedList<Node>();
     Node step = target;
     // Check if a path exists
-    if (predecessors.get(step) == null) {
+    if (!predecessors.get(step)) {
       return new Path();
     }
     path.add(step);
-    while (predecessors.get(step) != null) {
+    while (predecessors.get(step)) {
       step = predecessors.get(step);
       path.add(step);
     }
