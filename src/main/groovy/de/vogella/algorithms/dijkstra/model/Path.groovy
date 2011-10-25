@@ -1,11 +1,8 @@
 package de.vogella.algorithms.dijkstra.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Arrays.asList;
-import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+import static java.util.Arrays.asList
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode
 
 public class Path {
 
