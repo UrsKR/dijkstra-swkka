@@ -3,6 +3,9 @@
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
   </component>
+  <component name="ClearCaseSharedConfig">
+    <option name="myUseUcmModel" value="true" />
+  </component>
   <component name="CodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
       <value>
@@ -91,6 +94,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/Vorab/pom.xml" />
+        <option value="$PROJECT_DIR$/Softwerkskammer/pom.xml" />
       </list>
     </option>
   </component>
@@ -247,7 +252,8 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Connections-Groovy.iml" filepath="$PROJECT_DIR$/Connections-Groovy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Softwerkskammer/Softwerkskammer.iml" filepath="$PROJECT_DIR$/Softwerkskammer/Softwerkskammer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vorab/Vorab.iml" filepath="$PROJECT_DIR$/Vorab/Vorab.iml" />
     </modules>
   </component>
   <component name="ProjectResources">

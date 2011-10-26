@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Connections-Groovy</groupId>
-    <artifactId>Connections-Groovy</artifactId>
+    <artifactId>Softwerkskammer</artifactId>
     <version>1.0</version>
+
 
     <properties>
         <groovy.version>1.8.0</groovy.version>
