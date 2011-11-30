@@ -78,12 +78,12 @@ public class DijkstraAlgorithm {
     public LinkedList<Node> getPath(Node target) {
         LinkedList<Node> path = new LinkedList<Node>();
         Node step = target;
-        // Check if a path exists
-        if (predecessors.get(step) == null) {
+        boolean isConnected = predecessors.containsKey(step);
+        if (!isConnected) {
             return null;
         }
         path.add(step);
-        while (predecessors.get(step) != null) {
+        while (predecessors.containsKey(step)) {
             step = predecessors.get(step);
             path.add(step);
         }
