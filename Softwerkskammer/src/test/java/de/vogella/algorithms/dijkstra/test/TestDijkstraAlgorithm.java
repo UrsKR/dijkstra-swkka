@@ -1,23 +1,15 @@
 package de.vogella.algorithms.dijkstra.test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.hamcrest.CoreMatchers;
-import org.junit.Test;
-
 import de.vogella.algorithms.dijkstra.engine.DijkstraAlgorithm;
 import de.vogella.algorithms.dijkstra.model.Graph;
 import de.vogella.algorithms.dijkstra.model.Node;
-import org.spockframework.util.Matchers;
+import org.junit.Test;
+
+import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class TestDijkstraAlgorithm {
 
