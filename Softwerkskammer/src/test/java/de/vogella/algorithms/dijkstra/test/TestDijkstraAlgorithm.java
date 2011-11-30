@@ -16,28 +16,36 @@ public class TestDijkstraAlgorithm {
     private Graph graph = new Graph();
 
     @Test
-    public void testExcute() {
-        for (int i = 0; i < 11; i++) {
-            graph.addNode(i);
-        }
+    public void testExecute() {
+        Node firstNode = graph.addNode(0);
+        Node secondNode = graph.addNode(1);
+        Node thirdNode = graph.addNode(2);
+        Node fourthNode = graph.addNode(3);
+        Node fifthNode = graph.addNode(4);
+        Node sixthNode = graph.addNode(5);
+        Node seventhNode = graph.addNode(6);
+        Node eighthNode = graph.addNode(7);
+        Node ninthNode = graph.addNode(8);
+        Node tenthNode = graph.addNode(9);
+        Node eleventhNode = graph.addNode(10);
 
-        graph.addLane(graph.getNodes().get(0), graph.getNodes().get(1), 85);
-        graph.addLane(graph.getNodes().get(0), graph.getNodes().get(2), 217);
-        graph.addLane(graph.getNodes().get(0), graph.getNodes().get(4), 173);
-        graph.addLane(graph.getNodes().get(2), graph.getNodes().get(6), 186);
-        graph.addLane(graph.getNodes().get(2), graph.getNodes().get(7), 103);
-        graph.addLane(graph.getNodes().get(3), graph.getNodes().get(7), 183);
-        graph.addLane(graph.getNodes().get(5), graph.getNodes().get(8), 250);
-        graph.addLane(graph.getNodes().get(8), graph.getNodes().get(9), 84);
-        graph.addLane(graph.getNodes().get(7), graph.getNodes().get(9), 167);
-        graph.addLane(graph.getNodes().get(4), graph.getNodes().get(9), 502);
-        graph.addLane(graph.getNodes().get(9), graph.getNodes().get(10), 40);
-        graph.addLane(graph.getNodes().get(1), graph.getNodes().get(10), 600);
+        graph.addLane(firstNode, secondNode, 85);
+        graph.addLane(firstNode, thirdNode, 217);
+        graph.addLane(firstNode, fifthNode, 173);
+        graph.addLane(thirdNode, seventhNode, 186);
+        graph.addLane(thirdNode, eighthNode, 103);
+        graph.addLane(fourthNode, eighthNode, 183);
+        graph.addLane(sixthNode, ninthNode, 250);
+        graph.addLane(ninthNode, tenthNode, 84);
+        graph.addLane(eighthNode, tenthNode, 167);
+        graph.addLane(fifthNode, tenthNode, 502);
+        graph.addLane(tenthNode, eleventhNode, 40);
+        graph.addLane(secondNode, eleventhNode, 600);
 
         // Lets check from location Loc_1 to Loc_10
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        dijkstra.execute(graph.getNodes().get(0));
-        LinkedList<Node> path = dijkstra.getPath(graph.getNodes().get(10));
+        dijkstra.execute(firstNode);
+        LinkedList<Node> path = dijkstra.getPath(eleventhNode);
 
         assertNotNull(path);
         assertTrue(path.size() > 0);
