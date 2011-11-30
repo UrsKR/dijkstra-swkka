@@ -1,20 +1,27 @@
 package de.vogella.algorithms.dijkstra.model;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-    private List<Vertex> vertexes = new ArrayList<Vertex>();
+    private List<Node> nodes = new ArrayList<Node>();
     private List<Edge> edges = new ArrayList<Edge>();
 
-    public List<Vertex> getVertexes() {
-        return vertexes;
+    public List<Node> getNodes() {
+        return nodes;
     }
 
     public List<Edge> getEdges() {
         return edges;
     }
 
+    public void addLane(Node source, Node destination, int weight) {
+        edges.add(new Edge(source, destination, weight));
+    }
 
+    public Node addNode(int i) {
+        Node node = new Node("Node_" + i);
+        nodes.add(node);
+        return node;
+    }
 }

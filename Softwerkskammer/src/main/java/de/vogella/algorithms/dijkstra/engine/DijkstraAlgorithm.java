@@ -11,41 +11,39 @@ import java.util.Set;
 
 import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
-import de.vogella.algorithms.dijkstra.model.Vertex;
+import de.vogella.algorithms.dijkstra.model.Node;
 
 public class DijkstraAlgorithm {
 
-	private final List<Vertex> nodes;
-	private final List<Edge> edges;
-	private Set<Vertex> settledNodes;
-	private Set<Vertex> unSettledNodes;
-	private Map<Vertex, Vertex> predecessors;
-	private Map<Vertex, Integer> distance;
+    private final List<Edge> edges;
+	private Set<Node> settledNodes;
+	private Set<Node> unSettledNodes;
+	private Map<Node, Node> predecessors;
+	private Map<Node, Integer> distance;
 
 	public DijkstraAlgorithm(Graph graph) {
 		// Create a copy of the array so that we can operate on this array
-		this.nodes = new ArrayList<Vertex>(graph.getVertexes());
-		this.edges = new ArrayList<Edge>(graph.getEdges());
+        this.edges = new ArrayList<Edge>(graph.getEdges());
 	}
 
-	public void execute(Vertex source) {
-		settledNodes = new HashSet<Vertex>();
-		unSettledNodes = new HashSet<Vertex>();
-		distance = new HashMap<Vertex, Integer>();
-		predecessors = new HashMap<Vertex, Vertex>();
+	public void execute(Node source) {
+		settledNodes = new HashSet<Node>();
+		unSettledNodes = new HashSet<Node>();
+		distance = new HashMap<Node, Integer>();
+		predecessors = new HashMap<Node, Node>();
 		distance.put(source, 0);
 		unSettledNodes.add(source);
 		while (unSettledNodes.size() > 0) {
-			Vertex node = getMinimum(unSettledNodes);
+			Node node = getMinimum(unSettledNodes);
 			settledNodes.add(node);
 			unSettledNodes.remove(node);
 			findMinimalDistances(node);
 		}
 	}
 
-	private void findMinimalDistances(Vertex node) {
-		List<Vertex> adjacentNodes = getNeighbors(node);
-		for (Vertex target : adjacentNodes) {
+	private void findMinimalDistances(Node node) {
+		List<Node> adjacentNodes = getNeighbors(node);
+		for (Node target : adjacentNodes) {
 			if (getShortestDistance(target) > getShortestDistance(node)
 					+ getDistance(node, target)) {
 				distance.put(target, getShortestDistance(node)
@@ -57,7 +55,7 @@ public class DijkstraAlgorithm {
 
 	}
 
-	private int getDistance(Vertex node, Vertex target) {
+	private int getDistance(Node node, Node target) {
 		for (Edge edge : edges) {
 			if (edge.getSource().equals(node)
 					&& edge.getDestination().equals(target)) {
@@ -67,8 +65,8 @@ public class DijkstraAlgorithm {
 		throw new RuntimeException("Should not happen");
 	}
 
-	private List<Vertex> getNeighbors(Vertex node) {
-		List<Vertex> neighbors = new ArrayList<Vertex>();
+	private List<Node> getNeighbors(Node node) {
+		List<Node> neighbors = new ArrayList<Node>();
 		for (Edge edge : edges) {
 			if (edge.getSource().equals(node)
 					&& !isSettled(edge.getDestination())) {
@@ -78,25 +76,25 @@ public class DijkstraAlgorithm {
 		return neighbors;
 	}
 
-	private Vertex getMinimum(Set<Vertex> vertexes) {
-		Vertex minimum = null;
-		for (Vertex vertex : vertexes) {
+	private Node getMinimum(Set<Node> nodes) {
+		Node minimum = null;
+		for (Node node : nodes) {
 			if (minimum == null) {
-				minimum = vertex;
+				minimum = node;
 			} else {
-				if (getShortestDistance(vertex) < getShortestDistance(minimum)) {
-					minimum = vertex;
+				if (getShortestDistance(node) < getShortestDistance(minimum)) {
+					minimum = node;
 				}
 			}
 		}
 		return minimum;
 	}
 
-	private boolean isSettled(Vertex vertex) {
-		return settledNodes.contains(vertex);
+	private boolean isSettled(Node node) {
+		return settledNodes.contains(node);
 	}
 
-	private int getShortestDistance(Vertex destination) {
+	private int getShortestDistance(Node destination) {
 		Integer d = distance.get(destination);
 		if (d == null) {
 			return Integer.MAX_VALUE;
@@ -109,9 +107,9 @@ public class DijkstraAlgorithm {
 	 * This method returns the path from the source to the selected target and
 	 * NULL if no path exists
 	 */
-	public LinkedList<Vertex> getPath(Vertex target) {
-		LinkedList<Vertex> path = new LinkedList<Vertex>();
-		Vertex step = target;
+	public LinkedList<Node> getPath(Node target) {
+		LinkedList<Node> path = new LinkedList<Node>();
+		Node step = target;
 		// Check if a path exists
 		if (predecessors.get(step) == null) {
 			return null;
