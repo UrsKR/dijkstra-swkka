@@ -19,7 +19,7 @@ public class DijkstraAlgorithm {
     private Set<Node> settledNodes;
     private Set<Node> unSettledNodes;
     private Map<Node, Node> predecessors;
-    private Map<Node, Integer> distance;
+    private Map<Node, Integer> distanceByNode;
     private final Graph graph;
 
     public DijkstraAlgorithm(Graph graph) {
@@ -29,25 +29,24 @@ public class DijkstraAlgorithm {
     public void execute(Node source) {
         settledNodes = new HashSet<Node>();
         unSettledNodes = new HashSet<Node>();
-        distance = new HashMap<Node, Integer>();
+        distanceByNode = new HashMap<Node, Integer>();
         predecessors = new HashMap<Node, Node>();
-        distance.put(source, 0);
+        distanceByNode.put(source, 0);
         unSettledNodes.add(source);
         while (unSettledNodes.size() > 0) {
             Node node = getNodeWithMinimalDistanceToSourceFromUnsettledNodes();
             settledNodes.add(node);
             unSettledNodes.remove(node);
-            findMinimalDistances(node);
+            findMinimalDistancesFromNodeToNeighbors(node);
         }
     }
 
-    private void findMinimalDistances(Node node) {
+    private void findMinimalDistancesFromNodeToNeighbors(Node node) {
         List<Node> adjacentNodes = getNeighbors(node);
         for (Node target : adjacentNodes) {
-            if (getShortestDistance(target) > getShortestDistance(node)
-                    + getDistance(node, target)) {
-                distance.put(target, getShortestDistance(node)
-                        + getDistance(node, target));
+            int distanceToTargetViaNode = getShortestDistance(node) + getDistance(node, target);
+            if (getShortestDistance(target) > distanceToTargetViaNode) {
+                distanceByNode.put(target, distanceToTargetViaNode);
                 predecessors.put(target, node);
                 unSettledNodes.add(target);
             }
@@ -84,7 +83,7 @@ public class DijkstraAlgorithm {
     }
 
     private int getShortestDistance(Node destination) {
-        Integer distanceToDestination = distance.get(destination);
+        Integer distanceToDestination = distanceByNode.get(destination);
         if (distanceToDestination == null) {
             return MAX_VALUE;
         } else {
