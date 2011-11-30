@@ -1,10 +1,12 @@
 package de.vogella.algorithms.dijkstra.model;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-	private final List<Vertex> vertexes;
-	private final List<Edge> edges;
+	private List<Vertex> vertexes = new ArrayList<Vertex>();
+	private List<Edge> edges = new ArrayList<Edge>();
 
 	public Graph(List<Vertex> vertexes, List<Edge> edges) {
 		this.vertexes = vertexes;

@@ -23,6 +23,7 @@ public class TestDijkstraAlgorithm {
     public void testExcute() {
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
+        Graph graph = new Graph(nodes, edges);
         for (int i = 0; i < 11; i++) {
             Vertex location = new Vertex("Node_" + i, "Node_" + i);
             nodes.add(location);
@@ -42,7 +43,6 @@ public class TestDijkstraAlgorithm {
         addLane(1, 10, 600);
 
         // Lets check from location Loc_1 to Loc_10
-        Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         dijkstra.execute(nodes.get(0));
         LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
