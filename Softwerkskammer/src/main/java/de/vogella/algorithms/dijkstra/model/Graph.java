@@ -14,7 +14,7 @@ public class Graph {
         edges.add(new Edge(source, destination, weight));
     }
 
-    public Node addNode(int i) {
+    public Node createNode(int i) {
         return new Node("Node_" + i);
     }
 }
