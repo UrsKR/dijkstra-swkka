@@ -1,6 +1,5 @@
 package de.vogella.algorithms.dijkstra.engine;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -64,13 +63,8 @@ public class DijkstraAlgorithm {
     }
 
     private List<Node> getNeighbors(Node node) {
-        List<Node> neighbors = new ArrayList<Node>();
-        for (Edge edge : getEdges()) {
-            if (edge.getSource().equals(node)
-                    && !isSettled(edge.getDestination())) {
-                neighbors.add(edge.getDestination());
-            }
-        }
+        List<Node> neighbors = node.getNeighbours(getEdges());
+        neighbors.removeAll(settledNodes);
         return neighbors;
     }
 
