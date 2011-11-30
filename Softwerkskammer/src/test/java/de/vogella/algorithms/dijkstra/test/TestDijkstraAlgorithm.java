@@ -24,7 +24,7 @@ public class TestDijkstraAlgorithm {
     private Graph graph = new Graph();
 
     @Test
-    public void testExecute() {
+    public void findsShortestPath() {
         Node firstNode = graph.createNode(0);
         Node secondNode = graph.createNode(1);
         Node thirdNode = graph.createNode(2);
