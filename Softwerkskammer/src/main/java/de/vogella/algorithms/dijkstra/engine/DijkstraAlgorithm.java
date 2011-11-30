@@ -7,6 +7,7 @@ import de.vogella.algorithms.dijkstra.model.Graph;
 import de.vogella.algorithms.dijkstra.model.Node;
 
 import static java.lang.Integer.MAX_VALUE;
+import static java.util.Collections.reverse;
 
 public class DijkstraAlgorithm {
 
@@ -75,20 +76,22 @@ public class DijkstraAlgorithm {
       * This method returns the path from the source to the selected target and
       * NULL if no path exists
       */
-    public LinkedList<Node> getPath(Node target) {
-        LinkedList<Node> path = new LinkedList<Node>();
-        Node step = target;
-        boolean isConnected = predecessors.containsKey(step);
-        if (!isConnected) {
-            return null;
+    public List<Node> getPath(Node target) {
+        boolean isConnected = predecessors.containsKey(target);
+        if (isConnected) {
+            return constructPath(target);
         }
+        return new LinkedList<Node>();
+    }
+
+    private List<Node> constructPath(Node step) {
+        List<Node> path = new LinkedList<Node>();
         path.add(step);
         while (predecessors.containsKey(step)) {
             step = predecessors.get(step);
             path.add(step);
         }
-        // Put it into the correct order
-        Collections.reverse(path);
+        reverse(path);
         return path;
     }
 
