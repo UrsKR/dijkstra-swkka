@@ -26,4 +26,9 @@ public class Edge  {
 	public String toString() {
 		return source + " " + destination;
 	}
+
+    public boolean connects(Node node, Node target) {
+        return getSource().equals(node)
+                && getDestination().equals(target);
+    }
 }

@@ -52,10 +52,9 @@ public class DijkstraAlgorithm {
         }
     }
 
-    private int getDistance(Node node, Node target) {
+    private int getDistance(Node source, Node target) {
         for (Edge edge : getEdges()) {
-            if (edge.getSource().equals(node)
-                    && edge.getDestination().equals(target)) {
+            if (edge.connects(source, target)) {
                 return edge.getWeight();
             }
         }
