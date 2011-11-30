@@ -1,12 +1,6 @@
 package de.vogella.algorithms.dijkstra.engine;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
@@ -17,7 +11,6 @@ import static java.lang.Integer.MAX_VALUE;
 public class DijkstraAlgorithm {
 
     private Set<Node> settledNodes;
-    private Set<Node> unSettledNodes;
     private Map<Node, Node> predecessors;
     private Map<Node, Integer> distanceByNode;
     private final Graph graph;
@@ -28,15 +21,12 @@ public class DijkstraAlgorithm {
 
     public void execute(Node source) {
         settledNodes = new HashSet<Node>();
-        unSettledNodes = new HashSet<Node>();
         distanceByNode = new HashMap<Node, Integer>();
         predecessors = new HashMap<Node, Node>();
         distanceByNode.put(source, 0);
-        unSettledNodes.add(source);
-        while (unSettledNodes.size() > 0) {
+        while (getUnsettledNodes().size() > 0) {
             Node node = getNodeWithMinimalDistanceToSourceFromUnsettledNodes();
             settledNodes.add(node);
-            unSettledNodes.remove(node);
             findMinimalDistancesFromNodeToNeighbors(node);
         }
     }
@@ -48,7 +38,6 @@ public class DijkstraAlgorithm {
             if (getShortestDistance(target) > distanceToTargetViaNode) {
                 distanceByNode.put(target, distanceToTargetViaNode);
                 predecessors.put(target, node);
-                unSettledNodes.add(target);
             }
         }
     }
@@ -70,7 +59,7 @@ public class DijkstraAlgorithm {
 
     private Node getNodeWithMinimalDistanceToSourceFromUnsettledNodes() {
         Node minimum = null;
-        for (Node node : unSettledNodes) {
+        for (Node node : getUnsettledNodes()) {
             if (minimum == null) {
                 minimum = node;
             } else {
@@ -112,7 +101,13 @@ public class DijkstraAlgorithm {
         return path;
     }
 
-    public List<Edge> getEdges() {
+    private List<Edge> getEdges() {
         return graph.getEdges();
+    }
+
+    private Set<Node> getUnsettledNodes() {
+        Set<Node> nodes = new HashSet<Node>(distanceByNode.keySet());
+        nodes.removeAll(settledNodes);
+        return nodes;
     }
 }
