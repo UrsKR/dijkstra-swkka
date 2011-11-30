@@ -34,7 +34,7 @@ public class DijkstraAlgorithm {
         distance.put(source, 0);
         unSettledNodes.add(source);
         while (unSettledNodes.size() > 0) {
-            Node node = getMinimum(unSettledNodes);
+            Node node = getNodeWithMinimalDistanceToSourceFromUnsettledNodes();
             settledNodes.add(node);
             unSettledNodes.remove(node);
             findMinimalDistances(node);
@@ -69,9 +69,9 @@ public class DijkstraAlgorithm {
         return neighbors;
     }
 
-    private Node getMinimum(Set<Node> nodes) {
+    private Node getNodeWithMinimalDistanceToSourceFromUnsettledNodes() {
         Node minimum = null;
-        for (Node node : nodes) {
+        for (Node node : unSettledNodes) {
             if (minimum == null) {
                 minimum = node;
             } else {
@@ -83,16 +83,12 @@ public class DijkstraAlgorithm {
         return minimum;
     }
 
-    private boolean isSettled(Node node) {
-        return settledNodes.contains(node);
-    }
-
     private int getShortestDistance(Node destination) {
-        Integer d = distance.get(destination);
-        if (d == null) {
+        Integer distanceToDestination = distance.get(destination);
+        if (distanceToDestination == null) {
             return MAX_VALUE;
         } else {
-            return d;
+            return distanceToDestination;
         }
     }
 
