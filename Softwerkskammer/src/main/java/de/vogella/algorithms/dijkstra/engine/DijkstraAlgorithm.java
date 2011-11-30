@@ -15,14 +15,14 @@ import de.vogella.algorithms.dijkstra.model.Node;
 
 public class DijkstraAlgorithm {
 
-    private final List<Edge> edges;
     private Set<Node> settledNodes;
     private Set<Node> unSettledNodes;
     private Map<Node, Node> predecessors;
     private Map<Node, Integer> distance;
+    private final Graph graph;
 
     public DijkstraAlgorithm(Graph graph) {
-        this.edges = graph.getEdges();
+        this.graph = graph;
     }
 
     public void execute(Node source) {
@@ -54,7 +54,7 @@ public class DijkstraAlgorithm {
     }
 
     private int getDistance(Node node, Node target) {
-        for (Edge edge : edges) {
+        for (Edge edge : getEdges()) {
             if (edge.getSource().equals(node)
                     && edge.getDestination().equals(target)) {
                 return edge.getWeight();
@@ -65,7 +65,7 @@ public class DijkstraAlgorithm {
 
     private List<Node> getNeighbors(Node node) {
         List<Node> neighbors = new ArrayList<Node>();
-        for (Edge edge : edges) {
+        for (Edge edge : getEdges()) {
             if (edge.getSource().equals(node)
                     && !isSettled(edge.getDestination())) {
                 neighbors.add(edge.getDestination());
@@ -120,5 +120,9 @@ public class DijkstraAlgorithm {
         // Put it into the correct order
         Collections.reverse(path);
         return path;
+    }
+
+    public List<Edge> getEdges() {
+        return graph.getEdges();
     }
 }
