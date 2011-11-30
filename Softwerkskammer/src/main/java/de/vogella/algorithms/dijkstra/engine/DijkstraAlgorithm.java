@@ -10,6 +10,7 @@ import static java.lang.Integer.MAX_VALUE;
 
 public class DijkstraAlgorithm {
 
+    public static final Node Minimum_Unknown = null;
     private Set<Node> settledNodes;
     private Map<Node, Node> predecessors;
     private Map<Node, Integer> distanceByNode;
@@ -24,7 +25,7 @@ public class DijkstraAlgorithm {
         distanceByNode = new HashMap<Node, Integer>();
         predecessors = new HashMap<Node, Node>();
         distanceByNode.put(source, 0);
-        while (getUnsettledNodes().size() > 0) {
+        while (!getUnsettledNodes().isEmpty()) {
             Node node = getNodeWithMinimalDistanceToSourceFromUnsettledNodes();
             settledNodes.add(node);
             findMinimalDistancesFromNodeToNeighbors(node);
@@ -32,8 +33,7 @@ public class DijkstraAlgorithm {
     }
 
     private void findMinimalDistancesFromNodeToNeighbors(Node node) {
-        List<Node> adjacentNodes = getNeighbors(node);
-        for (Node target : adjacentNodes) {
+        for (Node target : getNeighbors(node)) {
             int distanceToTargetViaNode = getShortestDistance(node) + getDistance(node, target);
             if (getShortestDistance(target) > distanceToTargetViaNode) {
                 distanceByNode.put(target, distanceToTargetViaNode);
@@ -60,24 +60,15 @@ public class DijkstraAlgorithm {
     private Node getNodeWithMinimalDistanceToSourceFromUnsettledNodes() {
         Node minimum = null;
         for (Node node : getUnsettledNodes()) {
-            if (minimum == null) {
+            if (getShortestDistance(node) < getShortestDistance(minimum)) {
                 minimum = node;
-            } else {
-                if (getShortestDistance(node) < getShortestDistance(minimum)) {
-                    minimum = node;
-                }
             }
         }
         return minimum;
     }
 
     private int getShortestDistance(Node destination) {
-        Integer distanceToDestination = distanceByNode.get(destination);
-        if (distanceToDestination == null) {
-            return MAX_VALUE;
-        } else {
-            return distanceToDestination;
-        }
+        return distanceByNode.containsKey(destination) ? distanceByNode.get(destination) : MAX_VALUE;
     }
 
     /*
