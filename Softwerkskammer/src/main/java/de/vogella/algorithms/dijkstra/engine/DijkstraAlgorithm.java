@@ -12,6 +12,8 @@ import de.vogella.algorithms.dijkstra.model.Edge;
 import de.vogella.algorithms.dijkstra.model.Graph;
 import de.vogella.algorithms.dijkstra.model.Node;
 
+import static java.lang.Integer.MAX_VALUE;
+
 public class DijkstraAlgorithm {
 
     private Set<Node> settledNodes;
@@ -58,7 +60,7 @@ public class DijkstraAlgorithm {
                 return edge.getWeight();
             }
         }
-        throw new RuntimeException("Should not happen");
+        return MAX_VALUE;
     }
 
     private List<Node> getNeighbors(Node node) {
@@ -88,7 +90,7 @@ public class DijkstraAlgorithm {
     private int getShortestDistance(Node destination) {
         Integer d = distance.get(destination);
         if (d == null) {
-            return Integer.MAX_VALUE;
+            return MAX_VALUE;
         } else {
             return d;
         }
