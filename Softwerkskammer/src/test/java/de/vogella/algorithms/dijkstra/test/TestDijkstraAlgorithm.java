@@ -16,17 +16,13 @@ import static org.junit.Assert.assertTrue;
 
 public class TestDijkstraAlgorithm {
 
-    private List<Vertex> nodes;
-    private List<Edge> edges;
+    private Graph graph = new Graph();
 
     @Test
     public void testExcute() {
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
-        Graph graph = new Graph(nodes, edges);
         for (int i = 0; i < 11; i++) {
             Vertex location = new Vertex("Node_" + i, "Node_" + i);
-            nodes.add(location);
+            graph.getVertexes().add(location);
         }
 
         addLane(0, 1, 85);
@@ -44,8 +40,8 @@ public class TestDijkstraAlgorithm {
 
         // Lets check from location Loc_1 to Loc_10
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        dijkstra.execute(nodes.get(0));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
+        dijkstra.execute(graph.getVertexes().get(0));
+        LinkedList<Vertex> path = dijkstra.getPath(graph.getVertexes().get(10));
 
         assertNotNull(path);
         assertTrue(path.size() > 0);
@@ -57,7 +53,7 @@ public class TestDijkstraAlgorithm {
     }
 
     private void addLane(int sourceLocNo, int destLocNo, int duration) {
-        Edge lane = new Edge(nodes.get(sourceLocNo), nodes.get(destLocNo), duration);
-        edges.add(lane);
+        Edge lane = new Edge(graph.getVertexes().get(sourceLocNo), graph.getVertexes().get(destLocNo), duration);
+        graph.getEdges().add(lane);
     }
 }
